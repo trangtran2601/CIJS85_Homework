@@ -1,1 +1,1 @@
-# Ecommerce-Project
+# CIJS85 Homework
