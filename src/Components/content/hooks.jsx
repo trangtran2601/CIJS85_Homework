@@ -1,4 +1,4 @@
-import { TodoItemContext ,TodoContext , EditContext} from "./Context";
+import { TodoItemContext ,TodoContext , EditContext, FilterContext} from "./Context";
 import { useContext} from "react";
 
 const useTodo = () => {
@@ -14,4 +14,9 @@ const useIsEdit = () => {
     return [isEdit, setIsEdit]
 }
 
-export {useTodo, useTodoItem, useIsEdit}
+const useFilter = () => {
+  const  [selectedFilter, setSelectedFilter] = useContext(FilterContext)
+  return [selectedFilter, setSelectedFilter]
+}
+
+export {useTodo, useTodoItem, useIsEdit, useFilter}
