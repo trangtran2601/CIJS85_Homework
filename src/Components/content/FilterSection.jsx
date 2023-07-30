@@ -1,6 +1,8 @@
+import { memo } from "react";
 import { useFilter } from "./hooks";
-import { FILTER_OPTIONS } from "./TodoList";
+import { FILTER_OPTIONS } from "./TodoManagement";
 const FilterSection = () => {
+ 
  const [selectedFilter, setSelectedFilter] = useFilter()
   const handleFilterComplete= () =>{
       setSelectedFilter(FILTER_OPTIONS.COMPLETED)
@@ -20,4 +22,4 @@ const FilterSection = () => {
     )
 }
 
-export default FilterSection
+export default memo(FilterSection)

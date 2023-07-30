@@ -1,6 +1,6 @@
 
 import {useTodo, useTodoItem, useIsEdit} from "./hooks";
-
+import { useState } from "react";
 const TodoItem = ({item, props}) => {
 
 
@@ -8,6 +8,7 @@ const TodoItem = ({item, props}) => {
     const [todoList, setTodoList] = useTodo()
     const [todoItem, setTodoItem] = useTodoItem()
     const [isEdit, setIsEdit] = useIsEdit()
+    const [colorMode, setColorMode] = useState(false)
     const handleCheckbox = (id)=> {
           setTodoList(todoList.map((todoItem)=> {               
                     if (todoItem.id === id) {
@@ -32,8 +33,11 @@ const TodoItem = ({item, props}) => {
         setTodoItem(todoList.find((todoItem)=> todoItem.id === id))
         setIsEdit(true)
     }
+    const handleOpenColor = () => {
+        setColorMode(!colorMode)
+    }
     return (            
-                <li className="todo-item">
+                <li className={`todo-item ${isCompleted ? 'completed' : 'uncompleted'}`}>
                     <span className="todo-item-name">{name}</span>
                     <div className="todo-controls-box">
                         <span className="todo-control-btn">
@@ -49,12 +53,19 @@ const TodoItem = ({item, props}) => {
                         <span className="todo-control-btn" onClick={() => handleEdit(id)}>
                             <i className="fa-regular fa-pen-to-square"></i>
                         </span>
-                        <span className="todo-control-btn">
+                        <span className="todo-control-btn" onClick={() => handleOpenColor()}>
                             <i className="fa-solid fa-palette"></i>
                         </span>
                         
                     </div>
-                    
+                    <ul className={`todo-color-list ${colorMode ? 'active' : ''} `}>
+                        <li className="todo-color-item red"></li>
+                        <li className="todo-color-item green"></li>
+                        <li className="todo-color-item blue"></li>
+                        <li className="todo-color-item violet"></li>
+                        <li className="todo-color-item orange"></li>
+                        <li className="todo-color-item pink"></li>
+                    </ul>
                 </li>
             )
 }

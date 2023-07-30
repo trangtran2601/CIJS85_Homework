@@ -13,16 +13,16 @@ const AddNewSection = () => {
         setTodoItem({id: 0, name: '', isCompleted: false})
     }
     const handleEditTodo = () => {
-        setTodoList(todoList.map((item) => {
-            if (item.id === todoItem.id) {
-                    return todoItem 
-            } else {
-                return item
-            }            
-        }))
-        setIsEdit(false)
-        setTodoItem({id: 0, name: '', isCompleted: false})
-    }
+            setTodoList(todoList.map((item) => {
+                if (item.id === todoItem.id) {
+                        return todoItem 
+                } else {
+                    return item
+                }            
+            }))
+            setIsEdit(false)
+            setTodoItem({id: 0, name: '', isCompleted: false})
+        }
     const handleChangeInput = (e) => {
         if (isEdit) {
             return setTodoItem({
@@ -31,7 +31,7 @@ const AddNewSection = () => {
             })
         } else {
             return setTodoItem({
-                id: todoList.length + 1,
+                id: Date.now(),
                 name: e.target.value,
                 isCompleted: false
             })
@@ -45,8 +45,7 @@ const AddNewSection = () => {
                 value={todoItem.name} 
                 onChange={handleChangeInput}>
             </input> 
-            {!isEdit && <button className="btn add-new-btn" onClick={handleAddTodo}>Add</button>}            
-            {isEdit && <button className="btn edit-btn" onClick={handleEditTodo}>Edit</button>}
+            {isEdit ? <button className="btn edit-btn" onClick={handleEditTodo}>Edit</button> : <button className="btn add-new-btn" onClick={handleAddTodo}>Add</button>}            
         </div>
     )
 }
